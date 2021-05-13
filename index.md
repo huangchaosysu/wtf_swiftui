@@ -33,3 +33,35 @@ Date()返回的是0时区的时间
 Dateformatter().string 返回的是系统时区的时间
 
 ## fullScreenCover 只能用在Button上？
+
+## transition removal animation not working in swiftui
+The problem is that when views come and go in a ZStack, their "zIndex" doesn't stay the same. What is happening is that the when "showMessage" goes from true to false, the VStack with the "Hello World" text is put at the bottom of the stack and the yellow color is immediately drawn over top of it. It is actually fading out but it's doing so behind the yellow color so you can't see it.
+
+To fix it you need to explicitly specify the "zIndex" for each view in the stack so they always stay the same - like so:
+```
+struct ContentView: View {
+@State private var showMessage = false
+
+var body: some View {
+    ZStack {
+        Color.yellow.zIndex(0)
+
+        VStack {
+            Spacer()
+            Button(action: {
+                withAnimation(.easeOut(duration: 3)) {
+                    self.showMessage.toggle()
+                }
+            }) {
+                Text("SHOW MESSAGE")
+            }
+        }.zIndex(1)
+
+        if showMessage {
+            Text("HELLO WORLD!")
+                .transition(.opacity)
+                .zIndex(2)
+        }
+    }
+}
+```
