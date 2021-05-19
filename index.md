@@ -65,3 +65,38 @@ var body: some View {
     }
 }
 ```
+
+## extra argument in call
+swiftui的ViewBuider限定最多只能10个子View
+
+## swiftui alert 组件只能展示一次
+```
+Button(action: {
+                        print("lslsls")
+                        showAlert.toggle()
+                    }) {
+                        HStack {
+                            Image(systemName: "xmark.circle.fill")
+                            Text(LocalizedStringKey("CancelOrder"))
+                        }
+                        .foregroundColor(Color.gray.opacity(0.8))
+                    }
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text(LocalizedStringKey("CancelOrder")),
+                            message: Text("CancelWarningTip1"),
+                            primaryButton: .default(
+                                Text(LocalizedStringKey("Leave")),
+                                action: {}  // alert set showAlert to false automatically
+                            ),
+                            secondaryButton: .destructive(
+                                Text(LocalizedStringKey("KeepWaiting")),
+                                action: {
+                                    onCancel()
+                                }
+                            )
+                        )
+                    }
+```
+
+swiftui的Alert组件， button会默认dismiss弹窗， 自动把showAlert设为false， 所以不同自己设置
