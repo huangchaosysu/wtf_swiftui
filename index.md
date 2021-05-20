@@ -108,3 +108,8 @@ Bundle.main.path(forResource: language, ofType: "lproj")
 ```
 
 上述代码中, language为[language]-[script] 格式， 其中language部分参考ISO 639 code， script部分参考ISO 15924 code
+
+
+## Xcode添加语言文件
+
+选中项目->PROJECT -> Localization
