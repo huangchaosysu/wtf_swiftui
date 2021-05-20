@@ -100,3 +100,11 @@ Button(action: {
 ```
 
 swiftui的Alert组件， button会默认dismiss弹窗， 自动把showAlert设为false， 所以不同自己设置
+
+
+## swift(ios) 查找语言文件
+```
+Bundle.main.path(forResource: language, ofType: "lproj")
+```
+
+上述代码中, language为[language]-[script] 格式， 其中language部分参考ISO 639 code， script部分参考ISO 15924 code
