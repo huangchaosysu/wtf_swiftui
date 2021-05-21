@@ -113,3 +113,31 @@ Bundle.main.path(forResource: language, ofType: "lproj")
 ## Xcode添加语言文件
 
 选中项目->PROJECT -> Localization
+
+## swiftui 隐藏键盘(dismiss keyboard)
+```
+#if canImport(UIKit)
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif
+```
+找个地方注册一个事件， 手动调用hideKeyboard()
+
+
+## swiftui 控制ScrollView的滚动位置
+```
+@Namespace var topID
+@Namespace var bottomID
+
+ScrollViewReader { proxy in
+    ScrollView(showsIndicators: false) {
+        Text("aaaaa").id(topID)
+        Text("bbbbb").id(bottomID)
+    }
+}
+
+// call proxy.scrollTo(bottomID) somewhere
+```
