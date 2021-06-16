@@ -145,3 +145,7 @@ ScrollViewReader { proxy in
 
 ## swiftui Angle
 Angle.degrees(xx), xx去0为x轴朝右， 逆时针为负， 顺时针为正
+
+
+## xCode: Errors were encountered while preparing your device for development
+solution: reboot your iphone
