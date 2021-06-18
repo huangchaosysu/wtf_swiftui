@@ -14,7 +14,7 @@
 ```
 init() {
     print("=======================app init============================")
-    WXApi.registerApp("wxd7b2f615bf516954", universalLink: "https://riderpie.jing-chi.com/")
+    WXApi.registerApp("wxd7b2f615bf516954", universalLink: "your universal link")
 }
 ```
 6. 发起支付
