@@ -153,3 +153,6 @@ solution: reboot your iphone
 ## mapkit 地图区域显示问题
 uiView.setUserTrackingMode(.none, animated: false)
 set tracking mode to none in updateUIView
+
+
+## [swiftui 集成微信支付(wechat pay)](/wechat)

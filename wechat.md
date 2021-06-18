@@ -31,3 +31,16 @@ WXApi.send(request) { result in
     print(result)
 }
 ```
+
+6. 处理微信支付回调
+```
+SomeView.onOpenURL(perform: handleWechatPayResult)
+func handleWechatPayResult(url: URL) {
+    if url.queryParameters!["ret"] == "0"{
+        print("success")
+    } else {
+        print("fail")
+    }
+}
+```
+
