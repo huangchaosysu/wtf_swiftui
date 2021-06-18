@@ -149,3 +149,7 @@ Angle.degrees(xx), xx去0为x轴朝右， 逆时针为负， 顺时针为正
 
 ## xCode: Errors were encountered while preparing your device for development
 solution: reboot your iphone
+
+## mapkit 地图区域显示问题
+uiView.setUserTrackingMode(.none, animated: false)
+set tracking mode to none in updateUIView
