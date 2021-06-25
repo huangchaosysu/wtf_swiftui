@@ -167,3 +167,48 @@ set tracking mode to none in updateUIView
  *   lalalalalalalalalalal
  */
 ```
+
+## mapkit marker平滑移动(move annotation)
+```
+func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<MapView>) {
+    // update car pose
+    guard carAnnotations != nil else {
+        return
+    }
+    for car in carAnnotations! {
+        if carAnnotationObjs[car.title!] != nil {
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 3) {
+                    // keep the reference of annotation somewhere
+                    carAnnotationObjs[car.title!]?.coordinate = car.coordinate
+                    let oldYaw = carAnnotationObjs[car.title!]?.yaw
+                    carAnnotationObjs[car.title!]?.yaw = car.yaw
+                    // keep the reference of annotationView somewhere
+                    carAnnotationViews[car.title!]?.transform = carAnnotationViews[car.title!]!.transform.rotated(by: CGFloat(car.yaw) - CGFloat(oldYaw!))
+                }
+            }
+            
+        } else {
+            uiView.addAnnotation(car)
+            carAnnotationObjs[car.title!] = car
+        }
+    }
+}
+```
+
+```
+func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    if annotation is CarAnnotation {
+        let pin = mapView.view(for: annotation) ?? MKAnnotationView(annotation: annotation, reuseIdentifier: MapView.carAnnotationIdentifier)
+        pin.image = UIImage(named: "car")
+        pin.zPriority = MKAnnotationViewZPriority.max
+        pin.frame = CGRect(x: pin.frame.minX + 2, y: pin.frame.minY, width: 22, height: 40)
+          pin.transform = CGAffineTransform(rotationAngle: CGFloat((annotation as! CarAnnotation).yaw) + CGFloat.pi / 2)  // radian
+        pin.transform = pin.transform.rotated(by: CGFloat((annotation as! CarAnnotation).yaw) + CGFloat.pi / 2)
+        carAnnotationViews[annotation.title!!] = pin
+        return pin
+    }
+
+    return nil
+}
+```
