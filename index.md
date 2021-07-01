@@ -157,6 +157,8 @@ set tracking mode to none in updateUIView
 
 ## [swiftui 集成微信支付(wechat pay)](/wtf_swiftui/wechat)
 
+## [swiftui 集成微信分享(wechat share)](/wtf_swiftui/wechat)
+
 ## 注释写法(how to write comments)
 ```
 /**
