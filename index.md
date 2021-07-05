@@ -251,3 +251,5 @@ struct MyWebView: UIViewRepresentable {
     }
 }
 ```
+
+## lottie动画比较耗费cpu
