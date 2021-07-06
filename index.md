@@ -257,7 +257,8 @@ struct MyWebView: UIViewRepresentable {
 ## swiftui 集成lottie
 1. File -> Swift Packages -> Add 'https://github.com/airbnb/lottie-ios.git'
 2. put your lottie file into project, **.json
-2. Build reusable View
+3. Build reusable View
+
 ```
 import SwiftUI
 import Lottie
