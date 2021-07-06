@@ -253,3 +253,42 @@ struct MyWebView: UIViewRepresentable {
 ```
 
 ## lottie动画比较耗费cpu
+
+## swiftui 集成lottie
+1. File -> Swift Packages -> Add 'https://github.com/airbnb/lottie-ios.git'
+2. put your lottie file into project, **.json
+2. Build reusable View
+```
+import SwiftUI
+import Lottie
+import UIKit
+
+struct MYLottieView: UIViewRepresentable {
+    var name: String
+    
+    typealias UIViewType = UIView
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView(frame: .zero)
+        
+        // add animation
+        let animationView = AnimationView()
+        animationView.animation = Animation.named(name)
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        animationView.play()
+        view.addSubview(animationView)
+        
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            animationView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            animationView.heightAnchor.constraint(equalTo: view.heightAnchor)
+        ])
+        
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {
+    }
+}
+```
