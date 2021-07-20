@@ -293,3 +293,7 @@ struct MYLottieView: UIViewRepresentable {
     }
 }
 ```
+
+
+## by me a coffee
+![By Me A Cofee](https://huangchaosysu.github.io/my_assets/images/wechat_qu_code.jpeg)
