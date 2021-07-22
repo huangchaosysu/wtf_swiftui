@@ -79,3 +79,10 @@ someview.onOpenURL { url in
     WXApi.handleOpen(url, delegate: wxdelegate)
 }
 ```
+
+
+
+
+
+## Buy me a coffee?
+![Buy Me A Cofee](https://huangchaosysu.github.io/my_assets/images/wechat_qu_code.jpeg)
