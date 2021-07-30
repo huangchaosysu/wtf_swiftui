@@ -1,3 +1,4 @@
+
 ## 隐藏导航栏(hide navigation bar)
 
 ```
@@ -69,7 +70,7 @@ var body: some View {
 ## extra argument in call
 swiftui的ViewBuider限定最多只能10个子View
 
-## swiftui alert 组件只能展示一次
+## swiftui alert 组件只能展示一次?
 ```
 Button(action: {
                         print("lslsls")
@@ -252,6 +253,8 @@ struct MyWebView: UIViewRepresentable {
 }
 ```
 
+[示例代码/example code](https://github.com/huangchaosysu/wtf_swiftui/tree/main/exampleCode)
+
 ## lottie动画比较耗费cpu
 
 ## swiftui 集成lottie
@@ -294,6 +297,7 @@ struct MYLottieView: UIViewRepresentable {
 }
 ```
 
+[示例代码/example code](https://github.com/huangchaosysu/wtf_swiftui/tree/main/exampleCode)
 
 
 
