@@ -114,6 +114,7 @@ Bundle.main.path(forResource: language, ofType: "lproj")
 ## Xcode添加语言文件
 
 选中项目->PROJECT -> Localization
+![添加语言文件](https://github.com/huangchaosysu/wtf_swiftui/blob/main/assets/images/1.png)
 
 ## swiftui 隐藏键盘(dismiss keyboard)
 ```
@@ -145,7 +146,7 @@ ScrollViewReader { proxy in
 
 
 ## swiftui Angle
-Angle.degrees(xx), xx去0为x轴朝右， 逆时针为负， 顺时针为正
+Angle.degrees(xx), xx取0为x轴朝右， 逆时针为负， 顺时针为正
 
 
 ## xCode: Errors were encountered while preparing your device for development
