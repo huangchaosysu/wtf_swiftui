@@ -114,7 +114,7 @@ Bundle.main.path(forResource: language, ofType: "lproj")
 ## Xcode添加语言文件
 
 选中项目->PROJECT -> Localization
-![添加语言文件](https://github.com/huangchaosysu/wtf_swiftui/blob/main/assets/images/1.png)
+![添加语言文件](https://github.com/huangchaosysu/wtf_swiftui/blob/main/assets/images/1.png?raw=true)
 
 ## swiftui 隐藏键盘(dismiss keyboard)
 ```
