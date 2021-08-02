@@ -301,6 +301,18 @@ struct MYLottieView: UIViewRepresentable {
 [示例代码/example code](https://github.com/huangchaosysu/wtf_swiftui/tree/main/exampleCode)
 
 
+## 轮播组件（carousel)
+[示例代码/example code](https://github.com/huangchaosysu/wtf_swiftui/tree/main/exampleCode)
+
+
+## a way to print some logs in swiftui(在swiftui的view里面打印log)
+```
+func log(_ log: String) -> EmptyView {
+    print("** \(log)")
+    return EmptyView()
+}
+```
+
 
 ## Buy me a coffee?
 ![Buy Me A Cofee](https://huangchaosysu.github.io/my_assets/images/wechat_qu_code.jpeg)
