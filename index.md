@@ -311,7 +311,51 @@ func log(_ log: String) -> EmptyView {
     print("** \(log)")
     return EmptyView()
 }
+
 ```
+## Textfield auto focus(文本框默认选中)
+
+```
+struct AutoFocusTextField: UIViewRepresentable {
+    @Binding var text: String
+    
+    class Coordinator: NSObject, UITextFieldDelegate {
+        @Binding var text: String
+        var isFirstResponder: Bool = false
+        
+        init(text: Binding<String>) {
+            self._text = text
+        }
+        
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            text = textField.text ?? ""
+        }
+    }
+    
+    func makeUIView(context: Context) -> some UIView {
+        let textField = UITextField()
+        textField.delegate = context.coordinator
+        textField.keyboardType = .numberPad
+        textField.textColor = UIColor.clear
+        textField.tintColor = .clear
+        return textField
+    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        if !context.coordinator.isFirstResponder { // 选中逻辑
+            uiView.becomeFirstResponder()
+            context.coordinator.isFirstResponder = true
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(text: $text)
+    }
+}
+```
+
+
+
 
 
 ## Buy me a coffee?
