@@ -354,6 +354,18 @@ struct AutoFocusTextField: UIViewRepresentable {
 }
 ```
 
+## 查看simulator沙盒目录(sandbox dir of simulators)
+1. xcode -> window -> devices and simulators  (cmd + shift + 2)
+2. 如下图所示，选择模拟器，找到identifier
+
+![图片](https://github.com/huangchaosysu/wtf_swiftui/blob/main/assets/images/2.png?raw=true)
+
+3. ~/Library/Developer/CoreSimulator/Devices/xxxxxxxxxx, 这个目录就是模拟器的根目录, xxxxxx替换为模拟器的identifier
+4. ~/Library/Developer/CoreSimulator/Devices/033DF892-6846-4E23-B571-657F02FCC37A/data/Containers/Data/Application/xxxxxxxxxxxxxxxxxxxxxx/, 这个目录就是应用的沙盒目录了，xxxxxxxx替换为应用的id
+5. 也可以用下面的命令来看具体的路径
+```
+FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+```
 
 
 
