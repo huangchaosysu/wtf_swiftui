@@ -370,7 +370,7 @@ FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriat
 ## 环境变量
 1. 设置环境变量
 
-`Product -> Scheme -> Edit Scheme` 打开编辑窗口并添加环境变量
+<code>Product -> Scheme -> Edit Scheme</code> 打开编辑窗口并添加环境变量
 ![图片](https://github.com/huangchaosysu/wtf_swiftui/blob/main/assets/images/3.png?raw=true)
 
 2. 代码中使用环境变量
