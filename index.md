@@ -367,8 +367,16 @@ struct AutoFocusTextField: UIViewRepresentable {
 FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 ```
 
+## 环境变量
+1. 设置环境变量
 
+`Product -> Scheme -> Edit Scheme` 打开编辑窗口并添加环境变量
+![图片](https://github.com/huangchaosysu/wtf_swiftui/blob/main/assets/images/3.png?raw=true)
 
+2. 代码中使用环境变量
+```
+ProcessInfo.processInfo.environment["DEBUG_MODE"] != nil
+```
 
 ## Buy me a coffee?
 ![Buy Me A Cofee](https://huangchaosysu.github.io/my_assets/images/wechat_qu_code.jpeg)
