@@ -377,6 +377,14 @@ FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriat
 ```
 ProcessInfo.processInfo.environment["DEBUG_MODE"] != nil
 ```
+## swiftui 动画详解
+[参考这里-part1](https://swiftui-lab.com/swiftui-animations-part1/)
+[参考这里-part2](https://swiftui-lab.com/swiftui-animations-part2/)
+[参考这里-part3](https://swiftui-lab.com/swiftui-animations-part3/)
+
+主要的知识点在于Animatable这个协议，以及如何把animatableData值的变化反应到属性的变化上
+swiftui动画的原理是根据animatableData的渐进变化，重新渲染UI
+
 
 ## Buy me a coffee?
 ![Buy Me A Cofee](https://huangchaosysu.github.io/my_assets/images/wechat_qu_code.jpeg)
