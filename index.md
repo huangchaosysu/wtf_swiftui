@@ -385,6 +385,74 @@ ProcessInfo.processInfo.environment["DEBUG_MODE"] != nil
 主要的知识点在于Animatable这个协议，以及如何把animatableData值的变化反应到属性的变化上
 swiftui动画的原理是根据animatableData的渐进变化，重新渲染UI
 
+##swiftui 动画问题
+```
+import SwiftUI
+import Network
+@main
+struct weridegoApp: App {
+    @State var width: CGFloat = 10
+    var body: some Scene {
+        WindowGroup {
+            NavigationView {
+                VStack { // 直接把VStack部分的代码写在App内部， withAnimation不work, 需要把这一部分单独放到一个View里去
+                    Rectangle()
+                        .fill(Color.red)
+                        .frame(width: self.width, height: 100)
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            self.width += 10
+                        }
+                    } label: {
+                        Text("shake")
+                    }
+                }
+            }
+            
+        }
+    }
+}
+```
+以上代码除非给Rectangle添加.animation()这个modifier， 不然一直work, 原因未知
+fix:
+
+```
+import SwiftUI
+import Network
+@main
+struct weridegoApp: App {
+    @State var width: CGFloat = 10
+    var body: some Scene {
+        WindowGroup {
+            NavigationView {
+                TheView()
+            }
+
+        }
+    }
+}
+
+struct TheView: View {
+    @State var width: CGFloat = 10
+
+    var body: some View {
+        VStack {
+            Rectangle()
+                .fill(Color.red)
+                .frame(width: self.width, height: 100)
+            Button {
+                withAnimation { // works
+                    self.width += 10
+                }
+            } label: {
+                Text("lalala")
+            }
+
+        }
+    }
+}
+```
+
 
 ## Buy me a coffee?
 ![Buy Me A Cofee](https://huangchaosysu.github.io/my_assets/images/wechat_qu_code.jpeg)
