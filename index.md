@@ -416,6 +416,8 @@ struct weridegoApp: App {
 }
 ```
 以上代码除非给Rectangle添加.animation()这个modifier， 不然一直work, 原因未知
+具体原因是App不能handle显示的动画调用, 详情参考[这里](https://stackoverflow.com/questions/68722067/why-does-not-withanimation-working-without-animation/68725083#68725083)
+
 fix:
 
 ```
