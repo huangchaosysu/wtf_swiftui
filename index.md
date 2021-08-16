@@ -457,6 +457,42 @@ struct TheView: View {
 }
 ```
 
+## 某个组件的出现动画(add/remove a view with animation)
+```
+struct The: View {
+    @State var show = false
+    var body: some View {
+        VStack{
+            Spacer()
+            Text("lalala")
+            
+            if show {
+                Text("hello world")
+                    .transition(.slide)
+                    // .animation()
+                    
+            }
+            Button("toogle") {
+                withAnimation(.default) {
+                    self.show.toggle()
+                }
+            }
+            .onAppear() {
+                DispatchQueue.main.async {
+                    withAnimation(.easeOut(duration: 5)) {
+                        self.show = true
+                    }
+                }
+            }
+            Spacer()
+        }
+    }
+}
+```
+
+不知道为什么，swiftui中，如果给某个组件设置了.transition + .animation, 不管是怎样设置的，这个组件都是从左上角飞入
+上面的代码是个workaround
+
 
 ## Buy me a coffee?
 ![Buy Me A Cofee](https://huangchaosysu.github.io/my_assets/images/wechat_qu_code.jpeg)
