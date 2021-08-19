@@ -494,5 +494,21 @@ struct The: View {
 上面的代码是个workaround
 
 
+## unit test(单元测试)
+1. create a unit test target(如果新建项目的时候没有选择include test， 那么需要执行这一步)
+```
+File -> New -> Target -> Unit Testing Bundle
+```
+
+2. 添加依赖的header
+
+根据需要配置下面这两个属性，在有外部依赖的情况下，可能会出现找不到头文件的编译错误
+```
+Target -> Build Settings -> Header Search Paths
+Target -> Build Settings -> Framework Search Paths
+```
+3. write you tests
+
+
 ## Buy me a coffee?
 ![Buy Me A Cofee](https://huangchaosysu.github.io/my_assets/images/wechat_qu_code.jpeg)
