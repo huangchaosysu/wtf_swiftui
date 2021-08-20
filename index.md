@@ -508,6 +508,29 @@ Target -> Build Settings -> Header Search Paths
 Target -> Build Settings -> Framework Search Paths
 ```
 3. write you tests
+```
+@testable import yourProjectName
+import XCTest
+
+class xxxxxTests: XCTestCase {
+}
+```
+
+## 监听事件
+这个功能是有NotificationCenter结合Combine(Publisher)来实现
+
+1. 进入前台事件, UIApplication.willEnterForegroundNotification
+2. 进入后台事件, UIApplication.willResignActiveNotification
+
+还有一些其他事件，自己尝试
+
+使用方法
+```
+Text("Hello, World!")
+    .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+        print("Moving to the background!")
+    }
+```
 
 
 ## Buy me a coffee?
