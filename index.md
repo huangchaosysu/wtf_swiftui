@@ -1,5 +1,45 @@
 What the Fuck SwiftUI
 
+## 关于动画奇怪的现象(strange things using withAnimation)
+示例代码
+```
+struct MyShimmer: View {
+    @State var show = false
+
+    var body: some View {
+        ZStack {
+            Color.black
+            VStack {
+                ZStack {
+                    Text("Chao")
+                        .foregroundColor(Color.white.opacity(0.5))
+                        .font(.system(size: 40))
+                    Text("Chao")
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 40))
+                        .mask(
+                            Color.red.opacity(0.5)
+                                .frame(width: 20)
+                                .offset(x: self.show ? 180 : -130)
+                        )
+                }
+                .onAppear(){
+    //                DispatchQueue.main.async {
+                        withAnimation(Animation.default.speed(0.15).delay(0).repeatForever(autoreverses: false)){
+                            self.show.toggle()
+                        }
+//                    }
+                }
+            }
+        }
+    }
+}
+```
+
+在我的机器上，如果是直接使用withAnimation, 整个页面都会参与到动画当中，整夜页面从左上角飞入，
+如果把withAnimation放到DispatchQueue.main.async里面，就是正常效果
+目前暂时不知道为什么，使用时需要注意
+
 
 ## 隐藏导航栏(hide navigation bar)
 
@@ -531,6 +571,44 @@ Text("Hello, World!")
         print("Moving to the background!")
     }
 ```
+
+## 闪烁效果(shimmer)
+这里用到一个叫mask的东西
+```
+struct MyShimmer: View {
+    @State var show = false
+
+    var body: some View {
+        ZStack {
+            Color.black
+            VStack {
+                ZStack {
+                    Text("Chao")
+                        .foregroundColor(Color.white.opacity(0.5))
+                        .font(.system(size: 40))
+                    Text("Chao")
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 40))
+                        .mask(
+                            Color.red.opacity(0.5)
+                                .frame(width: 20)
+                                .offset(x: self.show ? 180 : -130)
+                        )
+                }
+                .onAppear(){
+                    DispatchQueue.main.async {
+                        withAnimation(Animation.default.speed(0.15).delay(0).repeatForever(autoreverses: false)){
+                            self.show.toggle()
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+}
+```
+
 
 
 ## Buy me a coffee?
