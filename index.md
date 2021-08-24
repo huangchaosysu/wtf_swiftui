@@ -609,6 +609,35 @@ struct MyShimmer: View {
 }
 ```
 
+## 线性渐变(进度条)(animating loading with linear gradient)
+线性渐变的颜色滚动效果
+```
+struct Test: View {
+    @State var isAnimating = false
+    var body: some View {
+        GeometryReader { geo in
+            VStack {
+                Spacer()
+                
+                RoundedRectangle(cornerRadius: 5)
+                    .fill(LinearGradient(gradient: Gradient(colors: [.blue, .red, .blue, .red]), startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 0)))
+                    .frame(width: geo.size.width * 3, height: 30)
+                    .offset(x: self.isAnimating ? 0 : -geo.size.width * 2, y: 0)
+                Spacer()
+            }
+            .onAppear(){
+                
+                DispatchQueue.main.async {
+                    withAnimation(.linear(duration: 1).repeatForever(autoreverses: false)){
+                        self.isAnimating.toggle()
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
 
 
 ## Buy me a coffee?
