@@ -653,5 +653,28 @@ struct Test: View {
     your code
 #endif
 
+## TextField 延时搜索(delayed search)
+```
+@State var workItem: DispatchWorkItem?
+@State var searchText: String = ""
+@State var tmpSearchText: String = ""
+
+TextField("placeholder", text: $tmpSearchText, onCommit: {
+                        searchText = tmpSearchText
+                    })
+                        .accentColor(Color("C1"))
+                        .onChange(of: tmpSearchText) { _ in
+                            self.workItem?.cancel()
+                            let newWorkItem = DispatchWorkItem {
+                                self.searchText = tmpSearchText
+                            }
+
+                            self.workItem = newWorkItem
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: self.workItem!)
+                        }
+
+```
+
+
 ## Buy me a coffee?
 ![Buy Me A Cofee](https://huangchaosysu.github.io/my_assets/images/wechat_qu_code.jpeg)
