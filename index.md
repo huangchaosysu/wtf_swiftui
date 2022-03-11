@@ -675,6 +675,36 @@ TextField("placeholder", text: $tmpSearchText, onCommit: {
 
 ```
 
+## 宏定义-条件编译
+1. 添加编译flag, 
+`
+项目 -> project -> Build Settings -> Swift Compiler - Custom Flags -> Active Compilation Conditions
+`
+
+2. 条件语句
+#if DEBUG
+    your code
+#elseif condition
+    your code
+#else
+    your code
+#endif
+
+## While executing gem ... (Gem::FilePermissionError), 重装gem, cocoapods
+```
+curl -L https://get.rvm.io | bash -s stable
+# Reopen Terminal
+rvm install ruby-3.1.1
+rvm use ruby-3.1.1 
+rvm --default use 3.1.1
+
+sudo gem uninstall cocoapods
+sudo gem install -n /usr/local/bin cocoapods
+
+# Reopen Terminal
+pod --version
+```
+
 
 ## Buy me a coffee?
 ![Buy Me A Cofee](https://huangchaosysu.github.io/my_assets/images/wechat_qu_code.jpeg)
