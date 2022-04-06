@@ -705,6 +705,17 @@ sudo gem install -n /usr/local/bin cocoapods
 pod --version
 ```
 
-
-## Buy me a coffee?
-![Buy Me A Cofee](https://huangchaosysu.github.io/my_assets/images/wechat_qu_code.jpeg)
+## swiftui 侧滑返回
+本身， swiftui是支持策划返回的， 但是设置完.navigationBarHidden(true)以后， 导航栏会被隐藏， 同时策划返回页失效了。解决办法添加导航扩展
+```
+extension UINavigationController: UIGestureRecognizerDelegate  {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+    
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return viewControllers.count > 1
+    }
+}
+```
