@@ -719,3 +719,7 @@ extension UINavigationController: UIGestureRecognizerDelegate  {
     }
 }
 ```
+
+## ld: framework not found MAMapKit
+
+mac升级最新版本系统以后原来正常的项目突然真机调试编译不了， 手机也升级到最新系统后恢复
