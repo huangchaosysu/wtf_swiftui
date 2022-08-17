@@ -723,3 +723,60 @@ extension UINavigationController: UIGestureRecognizerDelegate  {
 ## ld: framework not found MAMapKit
 
 mac升级最新版本系统以后原来正常的项目突然真机调试编译不了， 手机也升级到最新系统后恢复
+
+## web调用swiftui原生方法
+
+```
+import SwiftUI
+import WebKit
+struct TheWebView: UIViewRepresentable {
+    @State var urlRequest: URLRequest
+    @Binding var contentHeight: CGFloat
+    var handleMessage: (_ msg: WKScriptMessage) -> Void
+
+    func makeUIView(context: UIViewRepresentableContext<TheWebView>) -> WKWebView {
+        let webView = WKWebView()
+        webView.configuration.userContentController.add(context.coordinator, name: "wyzx")
+        webView.scrollView.isScrollEnabled = false
+        webView.scrollView.bounces = false
+        webView.navigationDelegate = context.coordinator
+        return webView
+    }
+
+    func updateUIView(_ wkWebView: WKWebView, context: UIViewRepresentableContext<TheWebView>) {
+        wkWebView.load(urlRequest)
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(contentHeight: $contentHeight, handleMessage: handleMessage)
+    }
+
+    class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler {
+        @Binding var contentHeight: CGFloat
+        var handleMessage: (_ msg: WKScriptMessage) -> Void
+        var resized = false
+
+        init(contentHeight: Binding<CGFloat>, handleMessage: @escaping (_ msg: WKScriptMessage) -> Void) {
+            self._contentHeight = contentHeight
+            self.handleMessage = handleMessage
+        }
+
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            webView.evaluateJavaScript("document.readyState") { complete, _ in
+                guard complete != nil else { return }
+                webView.evaluateJavaScript("document.body.scrollHeight") { height, _ in
+                    guard let height = height as? CGFloat else { return }
+                    if !self.resized {
+                        self.contentHeight = height
+                        self.resized = true
+                    }
+                }
+            }
+        }
+        
+        func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {  //实现WKScriptMessageHandler的方法 重要
+            self.handleMessage(message)
+        }
+    }
+}
+```
